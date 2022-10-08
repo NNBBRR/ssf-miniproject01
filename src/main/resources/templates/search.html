@@ -16,6 +16,16 @@
           </a>
         </div>
       </nav>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" data-th-href="@{/user(userName=${userName})}"> Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+    <div class="container">
     <h1 class="container d-flex justify-content-center"><span data-th-text="${keyword}"></span>, here is a recommendation</h1>
     <br>
     <br>
