@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container d-flex justify-content-center">
+        <div class="card">
+       <div class="card-body">
+    <h2><span data-th-text="${userName}"></span>'s Food Search Summary</h2>
+
+                    
+                          <div class="container table-responsive">
+                        <H3>View all entries</H3>
+                    <table class="table table-hover">
+                        <tr data-th-each="d: ${dataset}">
+                            <td data-th-text="${d.name}"></td>
+                            <td data-th-text="${d.text}"></td>
+                        </tr>
+                    </table>
+    
+</body>
+</html>
