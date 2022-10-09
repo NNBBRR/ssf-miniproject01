@@ -26,19 +26,16 @@ public class UserController {
     public String getUser(@RequestParam (name = "userName", required = true) String userName, Model model) {
 
 		User currentuser = new User();
-
-		Optional<User> newUser = searchSvc.getByUsername(userName);
+		Optional<User> newUser = searchSvc.getByUsername(userName.toUpperCase());
 		
 		if (newUser.isEmpty()){
-            currentuser.setUserName(userName);
+            currentuser.setUserName(userName.toUpperCase());
         } else {
             currentuser = newUser.get();
         }
-
-		
-		
+			
         List<Data> dataset = new LinkedList<>();
-        dataset = searchSvc.getRedisUser(userName);
+        dataset = searchSvc.getRedisUser(userName.toUpperCase());
 
 		System.out.println("dataset");
 
@@ -49,21 +46,23 @@ public class UserController {
 
     }
 
-}
 
-	/* @GetMapping(value="/main/{userName}")
-    public String getSummary(@PathVariable (name = "userName", required = true) String userName, Model model) {
+    @GetMapping(value="/summary")
+    public String getSummary(@RequestParam (name = "userName") String userName, Model model) {
 
-		User user = new User();
-		user.setUserName(userName);	
-
-        if ((null == userName) || (userName.trim().length() <= 0))
-			userName = "anonymous";
-
+		User currentuser = new User();
+		Optional<User> newUser = searchSvc.getByUsername(userName);
+		
+		if (newUser.isEmpty()){
+            currentuser.setUserName(userName);
+        } else {
+            currentuser = newUser.get();
+        }
+		
         List<Data> dataset = new LinkedList<>();
-        dataset = searchSvc.getFromRepo(userName);
+        dataset = searchSvc.getRedisUser(userName);
 
-		System.out.println("dataset");
+		System.out.println("datasetsummary");
 
         model.addAttribute("userName", userName.toUpperCase());
         model.addAttribute("dataset", dataset);

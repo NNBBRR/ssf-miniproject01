@@ -26,7 +26,7 @@ public class SearchRestController {
 	@GetMapping(path = "/api/{userName}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> restJsonResponse (@PathVariable String userName){
         
-        Optional<List<Data>> dataset = RevRepo.getFromRedis(userName);
+        Optional<List<Data>> dataset = RevRepo.getRedis(userName.toUpperCase());
 
         if (dataset.isEmpty()) {
 			JsonObject payload = Json.createObjectBuilder()
@@ -37,7 +37,6 @@ public class SearchRestController {
 		}
 
         List<Data> data = dataset.get();
-
         return ResponseEntity.ok(data.toString());
     }
 

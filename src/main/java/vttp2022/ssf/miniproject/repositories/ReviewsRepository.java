@@ -20,31 +20,32 @@ public class ReviewsRepository {
     @Qualifier("redislab")
     private RedisTemplate<String,String> redisTemplate;
 
-    public void saveToRedis(String userName, Data data) {
+    public void save(String userName, Data data) {
 
+        // store userName as the key in Redis
         String jsonObjectName = userName;
         ListOperations<String, String> listOps = redisTemplate.opsForList();
 		listOps.leftPush(jsonObjectName, data.toJson().toString());
         
     }
 
-    public Optional<List<Data>> getFromRedis(String userName) {
+    public Optional<List<Data>> getRedis(String userName) {
 
-        // if redis does not have the username, return an empty container
+        // return empty container if username is not in Redis
         if (!redisTemplate.hasKey(userName)) {
             return Optional.empty();
         }
+
         List<Data> dataset = new LinkedList<>();
 		ListOperations<String, String> listOps = redisTemplate.opsForList();
-		long size = listOps.size(userName);
+		long listSize = listOps.size(userName);
         
-		for (long i = 0; i < size; i++) {
+		for (long i = 0; i < listSize; i++) {
 			String payloadStr = listOps.index(userName, i);
 			dataset.add(Data.create(payloadStr));
 		}
 
 		return Optional.of(dataset);
-
     }
 
 }

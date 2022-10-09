@@ -21,19 +21,21 @@ public class SearchController {
 
     @Autowired
     private SearchService searchSvc;
+    private String keyword;
+    private String userName;
 
     @PostMapping (value = "/search", consumes="application/x-www-form-urlencoded", produces="text/html")
     public String getReviews(@RequestBody MultiValueMap<String, String> form, Model model) {
         
-        String userName = form.getFirst("userName");
-        String keyword = form.getFirst("keyword");
+        userName = form.getFirst("userName");
+        keyword = form.getFirst("keyword");
        
 
         List<Reviews> listOfReviews = new LinkedList<>();
         listOfReviews = searchSvc.getReviews(keyword);
 
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("userName", userName);
+        model.addAttribute("keyword", keyword.toUpperCase());
+        model.addAttribute("userName", userName.toUpperCase());
         model.addAttribute("listOfReviews", listOfReviews);
 
         return "search";

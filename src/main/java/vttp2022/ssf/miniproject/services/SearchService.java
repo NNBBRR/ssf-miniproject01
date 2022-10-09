@@ -93,11 +93,11 @@ public class SearchService {
             review.setName(Name);
             review.setUuid(Uuid);
             review.setBody(Body);
-            review.setAuthorName(jo.getString("authorName"));
             review.setText(jo.getString("text"));
+            review.setAuthorName(jo.getString("authorName"));
+            review.setProfilePhoto(jo.getString("profilePhoto"));
             review.setRating(String.valueOf(jo.getInt("rating")));
             //review.setTime(jo.getString("time"));
-            review.setProfilePhoto(jo.getString("profilePhoto"));
             list.add(review);
             
        // }
@@ -110,18 +110,16 @@ public class SearchService {
     }
 
     public void saveToRepo(Data data, String userName) {
-        RevRepo.saveToRedis(userName, data);
+        RevRepo.save(userName, data);
     }
 
     public List<Data> getRedisUser(String userName) {
 
-         Optional<List<Data>> opt = RevRepo.getFromRedis(userName);
+         Optional<List<Data>> opt = RevRepo.getRedis(userName);
          if (opt.isEmpty())
-            return List.of(); 
-
+            return Collections.emptyList();
          return opt.get();
     }
-
 
     public Optional<User> getByUsername(final String userName) {
         
@@ -129,8 +127,7 @@ public class SearchService {
             return Optional.of(result);
         }catch (Exception e) {
             e.printStackTrace();
-        }
-        
+        }       
         return Optional.empty();
     }
 
@@ -167,5 +164,7 @@ public class SearchService {
         }
         return list;
     }
+
+    //return List.of(); 
 
  */
