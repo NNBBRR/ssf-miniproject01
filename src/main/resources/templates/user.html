@@ -44,42 +44,42 @@
 	</nav>
 
 	<div class="container d-flex justify-content-center">
-		<div class="card" style="width:70%">
+		<div class="card" style="width:80%">
 			<div class="card-body">
-				<h2 class="container d-flex justify-content-center"><span data-th-text="${userName}"></span>'s Food Search</h2>
+				<h2 class="container d-flex justify-content-center"><span data-th-text="${userName}"></span>'s Food
+					Search</h2>
 
 				<form class="container d-flex justify-content-center" method="POST" action="/search">
 					<input type="hidden" name="userName" data-th-value="${userName}">
 
 					<input id="keyword" type="text" name="keyword" size="20" placeholder="Seach By Keyword" required>
-
+					<br>
 					<button type="submit" class="btn btn-warning btn-lg">Search</button>
 				</form>
 				<br>
-				<br>
-		<div class="container d-flex justify-content-center">
-			<div class="card" style="width:100%">
-				<div class="card-body">
-					<H3>View All Reviews</H3>
-					<table class="table table-hover">
-						<tr>
-							<th>Food Place:</th>
-							<th>Author's Review:</th>
-						</tr>
-						<tr data-th-each="d: ${dataset}">
-							<td>									
-								<span data-th-text="${d.name}"></span>
-							</td>
-							<td>									
-								<span data-th-text="${d.text}"></span>
-							</td>
-						</tr>
-					</table>					
+				<div class="container d-flex justify-content-center">
+					<div class="card" style="width:100%">
+						<div class="card-body">
+							<H3>View All Reviews</H3>
+							<table class="table table-hover">
+								<tr>
+									<th>Food Place:</th>
+									<th>Author's Review:</th>
+								</tr>
+								<tr data-th-each="d: ${dataset}">
+									<td style="white-space:nowrap">
+										<span data-th-text="${d.name}"></span>
+									</td>
+									<td>
+										<span data-th-text="${d.text}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>		
 
 </body>
 

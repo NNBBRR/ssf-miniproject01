@@ -30,7 +30,6 @@ public class SearchController {
         userName = form.getFirst("userName");
         keyword = form.getFirst("keyword");
        
-
         List<Reviews> listOfReviews = new LinkedList<>();
         listOfReviews = searchSvc.getReviews(keyword);
 

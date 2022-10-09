@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" data-th-href="@{/reviews.css}">
     <title>Search</title>
 </head>
 
@@ -30,6 +29,17 @@
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                        data-th-href="@{/user(userName=${userName})}">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-th-href="@{/summary(userName=${userName})}">Summary</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -94,7 +104,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <button type="submit" class="btn btn-warning btn-lg">Save it!</button> <!-- <span data-th-text="${keyword}"></span> -->
+                                    <button type="submit" class="btn btn-warning btn-lg">Save it!</button>
+                                    <!-- <span data-th-text="${keyword}"></span> -->
                                 </tr>
                             </table>
                         </div>
