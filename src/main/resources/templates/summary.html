@@ -70,8 +70,12 @@
 								<th>Author's Review:</th>
 							</tr>
 							<tr data-th-each="d: ${dataset}">
-								<td data-th-text="${d.name}"></td>
-								<td data-th-text="${d.text}"></td>
+								<td style="white-space:nowrap">
+									<span data-th-text="${d.name}"></span>
+								</td>
+								<td>
+									<span data-th-text="${d.text}"></span>
+								</td>
 							</tr>
 						</table>
 					</section>

@@ -44,9 +44,9 @@ public class SearchController {
     @PostMapping (value = "/review", consumes="application/x-www-form-urlencoded", produces="text/html")
     public String saveReview(@RequestBody MultiValueMap<String, String> form, Model model) {
 
-        System.out.println(form.getFirst("userName"));
-        System.out.println(form.getFirst("name"));
-        System.out.println(form.getFirst("text"));
+        //System.out.println(form.getFirst("userName"));
+        //System.out.println(form.getFirst("name"));
+        //System.out.println(form.getFirst("text"));
                
         String userName = form.getFirst("userName");
         String name = form.getFirst("name");
